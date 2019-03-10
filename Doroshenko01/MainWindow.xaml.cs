@@ -4,14 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using FontAwesome.WPF;
 
 namespace Doroshenko01
 {
@@ -20,9 +13,19 @@ namespace Doroshenko01
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ImageAwesome _loader;
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MWViewModel(ShowLoader);
+        }
+
+        //There's no need in this method and it looks very bad. Code was moved to ViewModel
+
+        private void ShowLoader(bool isShow)
+        {
+            LoadSetting.OnRequestLoader(MainGrid, ref _loader, isShow);
         }
     }
 }

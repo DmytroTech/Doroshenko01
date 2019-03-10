@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doroshenko01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="AgeCalculatorWindow" Height="500" Width="500">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+
+        <StackPanel Grid.Row ="0" Grid.RowSpan="2" Orientation="Vertical">
+
+            <Label HorizontalAlignment="Center" Content="Your date of birth: "></Label>
+
+            <DatePicker SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+
+        </StackPanel>
+
+
+
+
+
+        <Button Content="Calculate age" Margin="50, 0" Grid.Row="2"  Command="{Binding CalculateAgeCommand}" IsEnabled="{Binding CanExecute}"/>
+
+        <local:CalculationResultView Grid.Row="4" PropAge="{Binding Age, Mode=OneWay}" 
+                                     PropWest="{Binding WesternZodiac, Mode=OneWay}"
+                                     PropChina="{Binding ChineseZodiac, Mode=OneWay}">
+
+        </local:CalculationResultView>
+
     </Grid>
 </Window>
